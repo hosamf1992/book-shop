@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Book-Shop</title>
+    <link rel="stylesheet" href="css/main.css">
+</head>
+
+<body onload="onInit()">
+
+    <h1>Welcome to my bookshop</h1>
+
+
+    <button onclick=" readAndAddNewBook()" class="btn add-book">Add new book</button>
+    <div class="filter-msg">
+        Click the Title or Price to sort
+       
+    </div>
+    <table border="1">
+        <tbody class="table"></tbody>
+
+    </table>
+
+    <div class="modal hide">
+
+        <button class="x-btn" onclick="closeModal()">X</button>
+        <h1>Title</h1>
+        <h2 class="book-name"></h2>
+        <h1>Price</h1>
+        <h2 class="book-price"></h2>
+        <h1>Rate</h1>
+        <h2 class="book-rate"></h2>
+        <img width="170" class="book-img">
+        <h1>change rate</h1>
+        <input class="rate-input" value="0" type="number" min="0" max="10" step="1">
+        <button onclick="onChangeRate()"> submit</button>
+
+
+    </div>
+
+    
+
+    <script src="js/util-service.js"></script>
+    <script src="js/book-service.js"></script>
+    <script src="js/book-controller.js"></script>
+
+</body>
+
+</html>
