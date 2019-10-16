@@ -9,33 +9,39 @@ function onInit() {
 }
 
 function readAndUpdateBook(bookId) {
-    var bookPrice = +prompt('Enter new price!');
+    var bookPrice = +prompt(getTrans('newPrice'));
 
     if (bookPrice !== 0) {
         updateBook(bookId, bookPrice);
         renderTable();
+        doTrans();
+       
     }
 
 }
 
 
 function readAndAddNewBook() {
-    var bookName = prompt('Enter book name!');
-    var price = +prompt('Enter the price');
-    var imgUrl = prompt('Enter image url');
+    var bookName = prompt(getTrans('newBook'));
+    var price = +prompt(getTrans('price'));
+    var imgUrl = prompt(getTrans('url'));
     addBook(bookName, price, imgUrl);
     renderTable();
+    doTrans();
+
 
 }
 
 
 
 function onDeleteBook(bookId) {
-    var isSure = confirm('Are you sure?')
+    var isSure = confirm(getTrans('sure'))
     if (!isSure) return;
 
     deleteBook(bookId);
     renderTable();
+    doTrans();
+
 }
 
 
@@ -43,7 +49,7 @@ function renderTable() {
 
     var strHtml = '';
     var headerTbHtml = '';
-    headerTbHtml = `<tr> <th>Id</th>  <th class='cursor' onclick="onSetFilter('Name')" >Title</th> <th class='cursor' onclick="onSetFilter('Price')"">Price</th> <th>Image</th>  <th colspan='3'>Actions</th> </tr>`;
+    headerTbHtml = `<tr> <th data-trans="table-id">Id</th>   <th data-trans="table-title" class='cursor' onclick="onSetFilter('Name')" >Title</th> <th data-trans="table-price" class='cursor' onclick="onSetFilter('Price')"">Price</th> <th data-trans="table-img">Image</th>  <th data-trans="table-actions" colspan='3'>Actions</th> </tr>`;
     strHtml += '<tr>';
 
     gBook.forEach(function (book) {
@@ -51,9 +57,9 @@ function renderTable() {
         strHtml += `<td> ${book.name} </td>`;
         strHtml += `<td> ${book.price} </td>`;
         strHtml += `<td> <img src="${book.imgUrl}" width="40"> </td>`;
-        strHtml += `<td> <button class='btn read-btn' onclick="onReadBook(${book.id})"> Read</button> </td>`;
-        strHtml += `<td> <button class='btn update-btn' onclick="readAndUpdateBook(${book.id})"> Update</button> </td>`;
-        strHtml += `<td> <button class='btn delete-btn' onclick="onDeleteBook(${book.id})"> Delete</button> </td>`;
+        strHtml += `<td> <button data-trans="read-btn" class='btn read-btn' onclick="onReadBook(${book.id})"> Read</button> </td>`;
+        strHtml += `<td> <button data-trans="update-btn" class='btn update-btn' onclick="readAndUpdateBook(${book.id})"> Update</button> </td>`;
+        strHtml += `<td> <button data-trans="delete-btn" class='btn delete-btn' onclick="onDeleteBook(${book.id})"> Delete</button> </td>`;
         strHtml += '</tr>';
 
     });
@@ -99,7 +105,7 @@ function closeModal() {
 }
 
 function onSetFilter(filterBy) {
-   
+
     console.log('Setting Filter', filterBy);
     setFilter(filterBy);
     if (filterBy === 'Price') sortByPrice();
@@ -108,5 +114,19 @@ function onSetFilter(filterBy) {
     renderTable();
 
 
+
+}
+
+function onSetLang(lang) {
+    setLang(lang);
+    if (lang === 'he') {
+        document.body.classList.add('rtl')
+      
+       
+    } else {
+        document.body.classList.remove('rtl')
+    }
+    
+    doTrans();
 
 }
