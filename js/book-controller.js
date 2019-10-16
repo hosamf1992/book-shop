@@ -55,7 +55,7 @@ function renderTable() {
     gBook.forEach(function (book) {
         strHtml += `<td> ${book.id} </td>`;
         strHtml += `<td> ${book.name} </td>`;
-        strHtml += `<td> ${book.price} </td>`;
+        strHtml += `<td > ${formatCurrency(book.price)} </td>`;
         strHtml += `<td> <img src="${book.imgUrl}" width="40"> </td>`;
         strHtml += `<td> <button data-trans="read-btn" class='btn read-btn' onclick="onReadBook(${book.id})"> Read</button> </td>`;
         strHtml += `<td> <button data-trans="update-btn" class='btn update-btn' onclick="readAndUpdateBook(${book.id})"> Update</button> </td>`;
@@ -92,7 +92,7 @@ function openModal(book) {
     var elImg = document.querySelector('.book-img');
 
     elName.innerText = book.name;
-    elPrice.innerText = book.price;
+    elPrice.innerText =formatCurrency(book.price) ;
     elRate.innerText = book.rate;
     elImg.src = book.imgUrl;
     gId = book.id;
@@ -126,6 +126,7 @@ function onSetLang(lang) {
     } else {
         document.body.classList.remove('rtl')
     }
+    renderTable();
 
     doTrans();
 

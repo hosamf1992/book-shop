@@ -119,8 +119,9 @@ function doTrans() {
         var txt = getTrans(transKey);
         el.innerText = txt;
 
-
     }
+
+
 }
 
 function getTrans(transKey) {
@@ -137,4 +138,18 @@ function getTrans(transKey) {
 
 function setLang(lang) {
     gCurrLang = lang;
+}
+
+function formatCurrency(num) {
+    var currency = '';
+    if (gCurrLang === "en") {
+        currency = 'USD';
+    } else {
+        currency = 'ILS'
+        num *= 3.5;
+    }
+
+    return new Intl.NumberFormat('he-IL', { style: 'currency', currency: currency }).format(num);
+
+
 }
