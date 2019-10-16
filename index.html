@@ -11,14 +11,20 @@
 
 <body onload="onInit()">
 
-    <h1>Welcome to my bookshop</h1>
+    <h1 data-trans="main-title">Welcome to my bookshop</h1>
 
 
-    <button onclick=" readAndAddNewBook()" class="btn add-book">Add new book</button>
-    <div class="filter-msg">
+    <button data-trans="add-btn" onclick=" readAndAddNewBook()" class="btn add-book">Add new book</button>
+    <div data-trans="filter-msg" class="filter-msg">
         Click the Title or Price to sort
-       
+
     </div>
+
+    <select class="lang" onchange="onSetLang(this.value)">
+        <option value="en">English</option>
+        <option value="he">עברית</option>
+    </select>
+
     <table border="1">
         <tbody class="table"></tbody>
 
@@ -27,23 +33,24 @@
     <div class="modal hide">
 
         <button class="x-btn" onclick="closeModal()">X</button>
-        <h1>Title</h1>
+        <h1 data-trans="modal-title">Title</h1>
         <h2 class="book-name"></h2>
-        <h1>Price</h1>
+        <h1 data-trans="modal-price">Price</h1>
         <h2 class="book-price"></h2>
-        <h1>Rate</h1>
+        <h1 data-trans="modal-rate">Rate</h1>
         <h2 class="book-rate"></h2>
         <img width="170" class="book-img">
-        <h1>change rate</h1>
+        <h1 data-trans="modal-change">change rate</h1>
         <input class="rate-input" value="0" type="number" min="0" max="10" step="1">
-        <button onclick="onChangeRate()"> submit</button>
+        <button data-trans="modal-btn" onclick="onChangeRate()"> Submit</button>
 
 
     </div>
 
-    
+
 
     <script src="js/util-service.js"></script>
+    <script src="js/i18n.service.js"></script>
     <script src="js/book-service.js"></script>
     <script src="js/book-controller.js"></script>
 
