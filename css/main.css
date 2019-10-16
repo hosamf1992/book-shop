@@ -1,3 +1,11 @@
+body.rtl {
+    direction: rtl;
+}
+
+body.rtl .btn-delete {
+    float: left;
+} 
+
 table {
     width: 80%;
     margin: 10px;
@@ -75,4 +83,8 @@ table {
 }
 .cursor{
     cursor: pointer;
+}
+
+.lang{
+    margin:10px;
 }
